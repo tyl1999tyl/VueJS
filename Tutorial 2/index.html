@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue #2</title>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr.isFav {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h4>Double click the record to favorite/unfavorite it!</h4>
+        <h5>Favorited record will be highlighted!</h5>
+        <h6>Records:</h6>
+        <table>
+            <tr>
+                <th>Website Name</th>
+                <th>Link</th>
+            </tr>
+
+            <!-- Using computed properties - favoriteWebsites-->
+            <tr v-if="showFav" v-for="website in favoriteWebsites">
+                <td>{{ website.title }}</td>
+                <td><a v-bind:href="website.url">{{ website.url }}</a></td>
+            </tr>
+
+            <!-- Using dynamic class - isFav-->
+            <!-- Using event - dblClick-->
+            <tr v-else v-for="website in websites" :class="{isFav:website.isFav}" @dblClick="handleEvent($event); website.isFav = !website.isFav">
+                <td>{{ website.title }}</td>
+                <!-- Using attribute binding - v-bind: OR : -->
+                <td><a v-bind:href="website.url">{{ website.url }}</a></td>
+            </tr>
+        </table>
+
+        <br>
+        <button @click="showFav = true">Show favorite only</button>
+        <br>
+        <button @click="showFav = false">Show All</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
