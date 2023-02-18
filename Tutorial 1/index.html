@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Counter: {{data.count}}</p>
+        <p v-if="data.count % 2 == 1">Count is odd number.</p>
+        <p v-else>Count is even number.</p>
+
+        <button v-on:click="increaseCount">Increase count</button>
+        <br>
+        <button v-on:click="decreaseCount(data)">Decrease count</button>
+        <br>
+        <button v-on:click="data.count=0">Reset count</button>
+        <br>
+        <p v-show="data.count > 10">Counter has exceeded 10!</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
